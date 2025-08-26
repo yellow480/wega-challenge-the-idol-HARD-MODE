@@ -24,7 +24,7 @@ function loadRBXMFromGitHub(url, modelName)
 end
 
 -- Usage example:
-local rbxmFileUrl = "https://raw.githubusercontent.com/yourusername/your-repo/main/yourfile.rbxm"
+local rbxmFileUrl = "https://github.com/yellow480/wega-challenge-the-idol-HARD-MODE/blob/main/Bear5.rbxm"
 local rbxmModel = loadRBXMFromGitHub(rbxmFileUrl, "MyImportedModel")
 if rbxmModel then
     rbxmModel.Parent = game:GetService("Workspace")
