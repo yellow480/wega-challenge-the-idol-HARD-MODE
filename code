@@ -1,0 +1,33 @@
+local HttpService = game:GetService("HttpService")
+local PlaceService = game:GetService("PlaceService")
+
+function loadRBXMFromGitHub(url, modelName)
+    local success, response = pcall(function()
+        return HttpService:GetAsync(url)
+    end)
+
+    if not success then
+        warn("Failed to download RBXM file: " .. url)
+        return nil
+    end
+
+    local data = response.Body
+    local model = PlaceService:LoadAsset(game, data)
+
+    if model then
+        model.Name = modelName
+        return model
+    else
+        warn("Failed to load RBXM model from data: " .. url)
+        return nil
+    end
+end
+
+-- Usage example:
+local rbxmFileUrl = "https://raw.githubusercontent.com/yourusername/your-repo/main/yourfile.rbxm"
+local rbxmModel = loadRBXMFromGitHub(rbxmFileUrl, "MyImportedModel")
+if rbxmModel then
+    rbxmModel.Parent = game:GetService("Workspace")
+else
+    warn("Failed to import RBXM model.")
+end
